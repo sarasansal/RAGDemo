@@ -9,6 +9,8 @@ class DocumentSplitter:
     Attributes:
         chunk_size (int): Maximum number of characters in each chunk.
         chunk_overlap (int): Number of characters to overlap between chunks.
+        text_splitter (RecursiveCharacterTextSplitter): An instance of RecursiveCharacterTextSplitter 
+        used to split the text into chunks based on the specified chunk_size and chunk_overlap.
     """
 
     def __init__(
