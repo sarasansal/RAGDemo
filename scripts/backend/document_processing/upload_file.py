@@ -1,11 +1,11 @@
 from langchain_qdrant import QdrantVectorStore
 
-from scripts.document_processing.document_loader import DocumentLoader
-from scripts.document_processing.document_embedder import Embedder
-from scripts.document_processing.document_splitter import DocumentSplitter
-from scripts.document_processing.vector_store import VectorStore
+from scripts.backend.document_processing.document_loader import DocumentLoader
+from scripts.backend.document_processing.document_embedder import Embedder
+from scripts.backend.document_processing.document_splitter import DocumentSplitter
+from scripts.backend.document_processing.vector_store import VectorStore
 
-from scripts.models.rag import UploadFileRequest
+from scripts.backend.models.rag import UploadFileRequest
 
 import os
 from dotenv import load_dotenv
@@ -37,7 +37,7 @@ class UploadFile:
             qdrant_vector_store = QdrantVectorStore(
                 collection_name=upload_file_request.collection_name,
                 client=vector_store.client,
-                embedding=embedder.embedding,
+                embedding=embedder.embedding
             )
             vector_store.add_documents(
                 documents=split_documents,
@@ -46,7 +46,3 @@ class UploadFile:
             return True
         except Exception as e:
             raise RuntimeError("Error uploading file: " + str(e))
-
-
-
-

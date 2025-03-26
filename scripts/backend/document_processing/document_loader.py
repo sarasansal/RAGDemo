@@ -37,7 +37,7 @@ class DocumentLoader:
             raise FileNotFoundError(f"File {file_path} does not exist")
         
         _, file_extension = os.path.splitext(file_path)
-        if file_extension.lower() != 'pdf':
+        if file_extension.lower() != '.pdf':
             raise ValueError(f"File {file_path} is not a PDF")
         
         loader = PyPDFLoader(file_path)

@@ -15,7 +15,7 @@ class Embedder:
 
     def __init__(
         self,
-        model_name: str = "sentence-transformers/all-MiniLM-L6-v2"
+        model_name: str = "bert-large-uncased"
     ):
         self.model_name = model_name
         self.embedding = self._load_embedding_model()
@@ -32,16 +32,16 @@ class Embedder:
             model_name=self.model_name, model_kwargs={"device": device}
         )
 
-    # def generate_embeddings(self, text: str) -> list:
-    #     """
-    #     Generate embeddings for a given text.
+    def generate_embeddings(self, text: str) -> list:
+        """
+        Generate embeddings for a given text.
 
-    #     Args:
-    #         text (str): Text to generate embeddings for.
+        Args:
+            text (str): Text to generate embeddings for.
 
-    #     Returns:
-    #         list: List of embedding vectors.
-    #     """
-    #     return self.embedding.embed_documents([text])
+        Returns:
+            list: List of embedding vectors.
+        """
+        return self.embedding.embed_documents([text])
 
 
