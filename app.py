@@ -72,12 +72,13 @@ def main():
             
             st.write("### Response:")
             st.write(query_response.response)
-            if query_response.context:
-                with st.expander("Retrieved Context"):
-                    for context in query_response.context:
-                        st.write(context)
-            else:
-                st.warning("No context retrieved.")
+            # if query_response.context:
+            #     with st.expander("Retrieved Context"):
+            #         for context in query_response.context:
+            #             st.write(context)
+            # else:
+            #     st.warning("No context retrieved.")
 
 if __name__ == "__main__":
     main()
+

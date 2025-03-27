@@ -40,13 +40,14 @@ class Retriever:
             List[Document]: Most relevant documents
         """
         try:
+
             context_docs = self.vector_store.similarity_search(
                 query=query, 
                 k=k
             )
             
             return context_docs
-        
+
         except Exception as e:
             raise RuntimeError(f"Error retrieving context: {e}")
 
