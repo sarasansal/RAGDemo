@@ -5,27 +5,21 @@ from langchain.text_splitter import RecursiveCharacterTextSplitter
 class DocumentSplitter:
     """
     A class to split text into chunks with the RecursiveCharacterTextSplitter method.
-
-    Attributes:
-        chunk_size (int): Maximum number of characters in each chunk.
-        chunk_overlap (int): Number of characters to overlap between chunks.
-        text_splitter (RecursiveCharacterTextSplitter): An instance of RecursiveCharacterTextSplitter 
-        used to split the text into chunks based on the specified chunk_size and chunk_overlap.
     """
 
     def __init__(
         self,
-        chunk_size: int = 1000,
-        chunk_overlap: int = 200
+        chunk_size: int = 500,
+        chunk_overlap: int = 50
     ):
         """
         Initialize the DocumentSplitter.
 
         Args:
             chunk_size (int, optional): Maximum number of characters in each chunk. 
-                Defaults to 1000.
+                Defaults to 500.
             chunk_overlap (int, optional): Number of characters to overlap between chunks. 
-                Defaults to 200.
+                Defaults to 50.
         """
         self.text_splitter = RecursiveCharacterTextSplitter(
             chunk_size=chunk_size,
@@ -47,9 +41,13 @@ class DocumentSplitter:
         try:
             chunks = self.text_splitter.split_documents(documents)
             
-            # Add a chunk index
-            # for i, chunk in enumerate(chunks):
-            #     chunk.metadata['chunk_id'] = i
+            for i, chunk in enumerate(chunks):
+                chunk.metadata.update({
+                    'chunk_id': i,
+                    'total_chunks': len(chunks),
+                    'splitter': 'RecursiveCharacterTextSplitter',
+                    'chunk_size': len(chunk.page_content),
+                })
 
         except Exception as e:
             raise RuntimeError(f"Failed to split documents: {e}")

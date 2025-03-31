@@ -46,9 +46,13 @@ class DocumentLoader:
         except Exception as e:
             raise RuntimeError(f"Error cargando {file_path}: {e}") from e
         
-        # Add basic metadata
-        # for doc in documents:
-        #     doc.metadata['source'] = os.path.basename(file_path)
+        for doc in documents:
+            doc.metadata.update({
+                'source': os.path.basename(file_path),
+                'file_path': file_path,
+                'file_type': 'pdf',
+                'loader': 'PyPDFLoader'
+            })
         
         return documents
 

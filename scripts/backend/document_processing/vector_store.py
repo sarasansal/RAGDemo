@@ -8,8 +8,7 @@ from qdrant_client.models import Distance, VectorParams
 
 class VectorStore:
     """
-    A class that wraps a QdrantClient and provides methods for creating
-    collections and adding documents to them.
+    A class that manages a Qdrant connection, enabling collection creation and document storage in a vector database.
     """
 
     def __init__(
@@ -33,7 +32,7 @@ class VectorStore:
         collection_name: str,
         size: int = 1024,
         distance: Distance = Distance.COSINE,
-    ):
+    )-> bool:
         """
         Create a collection in Qdrant.
 

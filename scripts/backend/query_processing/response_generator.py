@@ -9,8 +9,8 @@ class ResponseGenerator:
         temperature: float = 0.3
     ):
         """
-        Initialize the response generator with a Hugging Face model.
-        
+        Initialize the response generator with a Hugging Face model: A lightweight T5-based model fine-tuned for instruction following.
+
         Args:
             model_name (str): Name of the Hugging Face model
             temperature (float): Sampling temperature for text generation
