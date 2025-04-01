@@ -1,0 +1,6 @@
+poetry run uvicorn scripts.main:app --reload
+
+{
+  "file_path": "C:\\Users\\Usuario\\Desktop\\Prácticas\\RAG\\SEQ2SQL-RL.pdf",
+  "collection_name": "mi_coleccion"
+}

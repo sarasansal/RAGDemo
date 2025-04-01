@@ -1,6 +1,3 @@
-# import warnings
-# warnings.filterwarnings("ignore", message=".*Tried to instantiate class '__path__._path'.*")
-
 import streamlit as st
 import os
 from dotenv import load_dotenv
@@ -18,6 +15,12 @@ from scripts.backend.query_processing.response_generator import ResponseGenerato
 load_dotenv()
 
 def main():
+
+    """
+    Creates a Streamlit app for a Q&A system where users can upload PDF documents,
+    which are then indexed and stored in a Qdrant database. Users can query the indexed documents,
+    and the system generates a response based on the query using a retrieval-augmented generation (RAG) approach.
+    """
     st.title("BabyRAG: Q&A System")
 
     with st.sidebar:

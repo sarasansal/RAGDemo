@@ -6,10 +6,19 @@ from starlette.middleware.cors import CORSMiddleware
 from scripts.api.main import api_router
 from scripts.backend.document_processing.document_embedder import Embedder
 
+"""  
+This script sets up a FastAPI application with lifecycle management, custom route IDs, CORS support, and an API router.
+
+1. Defines the lifecycle, initializing an Embedder when the app starts.  
+2. Creates a function for unique route IDs based on tags and names.  
+3. Initializes the FastAPI app with custom settings and lifecycle management.  
+4. Adds CORS middleware to allow unrestricted access.  
+5. Includes the API router under '/api/v1'.  
+"""
+
 @asynccontextmanager
 async def lifespan(app: FastAPI):
-    # Cambié a un modelo más ligero para desarrollo
-    app.state.embedder = Embedder(model_name="bert-large-uncased")  # Modelo más rápido
+    app.state.embedder = Embedder(model_name="bert-large-uncased")
     yield
 
 def custom_generate_unique_id(route: APIRoute) -> str:
@@ -17,15 +26,13 @@ def custom_generate_unique_id(route: APIRoute) -> str:
 
 app = FastAPI(
     title="My BabyRAG Project",
-    # Cambios críticos aquí:
-    openapi_url="/openapi.json",  # Ruta directa sin prefijo
-    docs_url="/docs",            # Habilita docs en la raíz
-    redoc_url="/redoc",          # Habilita redoc en la raíz
+    openapi_url="/openapi.json",  
+    docs_url="/docs",            
+    redoc_url="/redoc",          
     generate_unique_id_function=custom_generate_unique_id,
     lifespan=lifespan,
 )
 
-# CORS configuration
 app.add_middleware(
     CORSMiddleware,
     allow_origins=["*"],
@@ -34,5 +41,4 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-# Montaje del router con prefijo
 app.include_router(api_router, prefix="/api/v1")

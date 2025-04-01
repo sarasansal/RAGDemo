@@ -2,6 +2,9 @@ from typing import List, Optional
 
 from pydantic import BaseModel
 
+"""
+This script defines Pydantic models for handling file upload requests, query parameters, and responses in the API.
+"""
 
 class UploadFileRequest(BaseModel):
     file_path: str
