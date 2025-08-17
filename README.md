@@ -1,4 +1,1 @@
-BabyRAG is a simple question-and-answer system built with Streamlit and FastAPI.
-It allows users to upload PDF documents, which are indexed and stored in a Qdrant database. 
-Users can then query the documents and receive relevant responses based on their questions.
-The system uses a Retrieval-Augmented Generation (RAG) approach to generate answers.
+RAGDemo is a lightweight Retrieval-Augmented Generation system that enables users to upload PDF documents and query them conversationally. Built with FastAPI, Streamlit, and Qdrant, it leverages a multi-agent architecture for document processing, real-time semantic search, and context-aware answer generation.
